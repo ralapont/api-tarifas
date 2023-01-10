@@ -1,17 +1,19 @@
 package com.example.apitarifas.service;
 
 import com.example.apitarifas.dtos.PricesResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Timestamp;
 
+@Slf4j
 @Service
 public class PricesService {
 
     public PricesResponse getRateToApply(Timestamp applicationDate,
                                          Integer productId,
                                          Integer brandId ) {
+        log.info("applicationDate: {} productId {} brandId {} ", applicationDate, productId, brandId);
         return getResponse();
     }
 
