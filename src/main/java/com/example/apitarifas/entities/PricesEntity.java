@@ -16,8 +16,9 @@ public class PricesEntity {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "BRAND_ID")
-    private Integer brandId;
+    @ManyToOne
+    @JoinColumn(name="BRAND_ID", nullable=false)
+    private BrandEntity brandId;
 
     @Column(name = "START_DATE")
     private Timestamp startDate;
