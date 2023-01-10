@@ -1,39 +1,32 @@
 package com.example.apitarifas.controller;
 
 import com.example.apitarifas.dtos.PricesResponse;
-import com.example.apitarifas.service.PricesService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.example.apitarifas.service.impl.PricesServiceImpl;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 public class PricesController {
 
-    private final PricesService pricesService;
+    private final PricesServiceImpl pricesService;
 
     @GetMapping("/prices")
-    public ResponseEntity<PricesResponse> getRateToApply(@RequestParam( value="applicationDate") Timestamp applicationDate,
+    public ResponseEntity<PricesResponse> getRateToApply(@RequestParam( value="applicationDate")
+                                                             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime applicationDate,
                                                          @RequestParam( value="productId") Integer productId,
-                                                         @RequestParam( value="brandId") Integer brandId ){
+                                                         @RequestParam( value="brandId") Long brandId ) throws Exception {
 
         return ResponseEntity.ok(pricesService.getRateToApply(applicationDate, productId, brandId));
     }
 
-    private PricesResponse getResponse() {
-        return PricesResponse.builder()
-                .productId(35455)
-                .priceList(1)
-                .brandId(1)
-                .price(35.50)
-                .startDate(Timestamp.valueOf("2011-10-02 18:48:05"))
-                .endDate(Timestamp.valueOf("2011-10-02 18:48:05"))
-                .build();
-    }
 }
