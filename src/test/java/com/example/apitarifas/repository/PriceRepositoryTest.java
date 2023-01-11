@@ -1,8 +1,13 @@
 package com.example.apitarifas.repository;
 
 import com.example.apitarifas.entities.PricesEntity;
+import com.example.apitarifas.utils.ConvertDates;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
@@ -28,23 +33,26 @@ public class PriceRepositoryTest {
     @Autowired
     private PricesRepository pricesRepository;
 
-    @Test
-    public void findByPriceListAndProductIdAndStartDateGreaterThan_20200614100000_Test() throws Exception {
+    @DisplayName("Test query by producto, brand and dates")
+    @ParameterizedTest
+    @CsvSource({"2020-06-14 10:00:00, 1, 35455"})
+    public void findByPriceListAndProductIdAndStartDateGreaterThanTest(ArgumentsAccessor arguments) throws Exception {
 
-        LocalDateTime applicationDate = convertStringToTimestamp("2020-06-14 10:00:00");
-        Long brandId = 1L;
-        Integer productId = 35455;
+        LocalDateTime applicationDate = ConvertDates.convertStringToTimestamp(arguments.getString(0));
+        Long brandId = arguments.getLong(1);
+        Integer productId = arguments.getInteger(2);
 
         List<PricesEntity> pricesEntities = pricesRepository.findAllByBrandIdAndProductIdAndApplicationDate(brandId, productId, applicationDate);
 
         assertNotNull(pricesEntities);
         assertThat(pricesEntities.size()).isEqualTo(1);
 
-    }
+        PricesEntity price = pricesEntities.get(0);
 
-    private LocalDateTime convertStringToTimestamp(String str) throws Exception {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return LocalDateTime.parse(str, formatter);
+        assertThat(price.getPriceList()).isEqualTo(1);
+        assertThat(price.getPrice()).isEqualTo(35.50);
+        assertThat(price.getStartDate()).isEqualTo(ConvertDates.convertStringToTimestamp("2020-06-14 00:00:00"));
+        assertThat(price.getEndDate()).isEqualTo(ConvertDates.convertStringToTimestamp("2020-12-31 23:59:59"));
 
     }
 
