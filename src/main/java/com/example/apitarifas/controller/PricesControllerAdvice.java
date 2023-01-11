@@ -2,7 +2,6 @@ package com.example.apitarifas.controller;
 
 import com.example.apitarifas.dtos.ErrorResponse;
 import com.example.apitarifas.exceptions.NoRateToApplyException;
-import org.modelmapper.spi.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
