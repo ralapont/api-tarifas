@@ -131,26 +131,6 @@ public class PriceControllerTest {
             assertThat(errorResponse.getMessage()).isEqualTo("No se han encontrado precios a aplicar");
             assertThat(errorResponse.getStatus()).isEqualTo(HttpStatus.NO_CONTENT);
         }
-
-
     }
-
-        private PricesResponse getResponse() throws Exception {
-        return PricesResponse.builder()
-                .productId(35455)
-                .priceList(1)
-                .brandId(1)
-                .price(35.50)
-                .startDate(convertStringToTimestamp("2020-06-14 00:00:00"))
-                .endDate(convertStringToTimestamp("2020-12-31 23:59:59"))
-                .build();
-    }
-
-    private LocalDateTime convertStringToTimestamp(String str) throws Exception {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return LocalDateTime.parse(str, formatter);
-
-    }
-
 
 }
