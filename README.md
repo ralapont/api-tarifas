@@ -115,53 +115,23 @@ height="3.2743055555555554in"}
 
 En las siguientes tablas describimos los campos de las tablas
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------
-  BRAND                                                                                                                                     
-  -------------- -------------- --------------------------------- ------------------------------------------------------------------------- ----
-  Campo          Tipo           Descripción                       Pk                                                                        Fk
+| BRAND       |                   |                        |                                                                                                                                             |     |
+|---------------|---------------|--------------------------------|------|------|
+| Campo       | Tipo              | Descripción            | Pk                                                                                                                                          | Fk  |
+| Id          | BigInt            | Identificador de Brand | ![Marca de verificación con relleno sólido](./myMediaFolder/media/image5.png){width="0.19791666666666666in" height="0.19791666666666666in"} |     |
+| Description | Character Varying | Nombre de Brand        |                                                                                                                                             |     |
 
-  Id             BigInt         Identificador de Brand            ![Marca de verificación con relleno                                       
-                                                                  sólido](./myMediaFolder/media/image5.png){width="0.19791666666666666in"   
-                                                                  height="0.19791666666666666in"}                                           
-
-  Description    Character      Nombre de Brand                                                                                             
-                 Varying                                                                                                                    
-  ----------------------------------------------------------------------------------------------------------------------------------------------
-
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  PRICES                                                                                                                                    
-  -------------- -------------- --------------------------------- ------------------------------------------------------------------------- -------------------------------------------------------------------------
-  Campo          Tipo           Descripción                       Pk                                                                        Fk
-
-  Id             BigInt         Identificador de Price            ![Marca de verificación con relleno                                       
-                                                                  sólido](./myMediaFolder/media/image5.png){width="0.19791666666666666in"   
-                                                                  height="0.19791666666666666in"}                                           
-
-  Brand_id       BigInt         Identificador de Brand                                                                                      ![Marca de verificación con relleno
-                                                                                                                                            sólido](./myMediaFolder/media/image5.png){width="0.19791666666666666in"
-                                                                                                                                            height="0.19791666666666666in"}
-
-  Start_date     Timestamp      Fecha y hora de comienzo de                                                                                 
-                                aplicación del precio                                                                                       
-
-  End_date       Timestamp      Fecha y hora de fin de aplicación                                                                           
-                                del precio                                                                                                  
-
-  Price_list     Integer        Identificador de la tarifa                                                                                  
-                                aplicable                                                                                                   
-
-  priority       Integer        Desambiguador de aplicación de                                                                              
-                                precios. Si dos tarifas coinciden                                                                           
-                                en un rango de fechas se aplica                                                                             
-                                la de mayor prioridad (mayor                                                                                
-                                valor numérico)                                                                                             
-
-  Price          Double         Precio final de venta                                                                                       
-                 Precisión                                                                                                                  
-
-  Curr           Charecter      Codigo iso de la moneda                                                                                     
-                 Varying                                                                                                                    
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| PRICES     |                   |                                                                                                                                               |                                                                                                                                             |                                                                                                                                             |
+|---------------|---------------|--------------------------------|------|------|
+| Campo      | Tipo              | Descripción                                                                                                                                   | Pk                                                                                                                                          | Fk                                                                                                                                          |
+| Id         | BigInt            | Identificador de Price                                                                                                                        | ![Marca de verificación con relleno sólido](./myMediaFolder/media/image5.png){width="0.19791666666666666in" height="0.19791666666666666in"} |                                                                                                                                             |
+| Brand_id   | BigInt            | Identificador de Brand                                                                                                                        |                                                                                                                                             | ![Marca de verificación con relleno sólido](./myMediaFolder/media/image5.png){width="0.19791666666666666in" height="0.19791666666666666in"} |
+| Start_date | Timestamp         | Fecha y hora de comienzo de aplicación del precio                                                                                             |                                                                                                                                             |                                                                                                                                             |
+| End_date   | Timestamp         | Fecha y hora de fin de aplicación del precio                                                                                                  |                                                                                                                                             |                                                                                                                                             |
+| Price_list | Integer           | Identificador de la tarifa aplicable                                                                                                          |                                                                                                                                             |                                                                                                                                             |
+| priority   | Integer           | Desambiguador de aplicación de precios. Si dos tarifas coinciden en un rango de fechas se aplica la de mayor prioridad (mayor valor numérico) |                                                                                                                                             |                                                                                                                                             |
+| Price      | Double Precisión  | Precio final de venta                                                                                                                         |                                                                                                                                             |                                                                                                                                             |
+| Curr       | Charecter Varying | Codigo iso de la moneda                                                                                                                       |                                                                                                                                             |                                                                                                                                             |
 
 4.  Implementación
 
